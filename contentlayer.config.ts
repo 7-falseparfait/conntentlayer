@@ -3,6 +3,7 @@ import {
   makeSource,
   defineNestedType,
 } from "contentlayer/source-files";
+import rehypePrettyCode from "rehype-pretty-code"; // Add this import
 
 const Author = defineNestedType(() => ({
   name: "Author",
@@ -14,7 +15,8 @@ const Author = defineNestedType(() => ({
 
 export const Post = defineDocumentType(() => ({
   name: "Post",
-  filePathPattern: `**/*.md`,
+  filePathPattern: `**/*.mdx`,
+  contentType: "mdx",
   fields: {
     title: { type: "string", required: true },
     image: { type: "string", required: true },
@@ -29,4 +31,18 @@ export const Post = defineDocumentType(() => ({
   },
 }));
 
-export default makeSource({ contentDirPath: "posts", documentTypes: [Post] });
+export default makeSource({
+  contentDirPath: "posts",
+  documentTypes: [Post],
+  mdx: {
+    rehypePlugins: [
+      [
+        rehypePrettyCode as any,
+        {
+          theme: "github-dark",
+          keepBackground: true,
+        },
+      ],
+    ],
+  },
+});
