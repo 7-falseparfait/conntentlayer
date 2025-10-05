@@ -1,0 +1,41 @@
+---
+title: "Understanding Truthy and Falsy Values in JavaScript"
+date: "2024-03-10"
+image: "/js.avif"
+author:
+  name: "John Doe"
+  image: "https://picsum.photos/150/150?random=34"
+---
+
+## What Are Truthy and Falsy Values?
+
+In JavaScript, every value has an inherent boolean nature. When you use a value in a condition (like an if statement), JavaScript converts it to either true or false. Values that convert to true are "truthy," and values that convert to false are "falsy."
+
+## The Falsy Values
+
+There are only **six falsy values** in JavaScript. Memorize these:
+
+- `false` (the boolean)
+- `0` (the number zero)
+- `""` (empty string)
+- `null`
+- `undefined`
+- `NaN` (Not a Number)
+
+Everything else is truthy.
+
+## Common Examples
+
+```javascript
+if ("hello") {
+  console.log("This runs!"); // Strings are truthy
+}
+
+if (0) {
+  console.log("This won't run"); // 0 is falsy
+}
+
+if ([]) {
+  console.log("This runs!"); // Empty arrays are truthy
+}
+```
